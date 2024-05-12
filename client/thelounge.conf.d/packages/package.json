@@ -1,0 +1,11 @@
+{
+	"private": true,
+	"description": "Packages for The Lounge. Use `thelounge install <package>` command to add a package.",
+	"dependencies": {
+		"thelounge-theme-abyss": "2.1.0",
+		"thelounge-theme-asciiarena": "1.0.0",
+		"thelounge-theme-catppuccin-mocha": "1.1.3",
+		"thelounge-theme-ion": "1.1.1",
+		"thelounge-theme-solarized": "1.1.9"
+	}
+}

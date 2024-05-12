@@ -1,0 +1,49 @@
+services:
+  server:
+    image: inspircd/inspircd-docker
+    volumes:
+      - ./server/inspircd.conf.d:/inspircd/conf/:rw
+    environment:
+      - INSP_NET_NAME=Nuclearproof
+      - INSP_SERVER_NAME=irc.winclem.com
+      - INSP_ADMIN_NAME=FrancoisP
+      - INSP_ADMIN_NICK=francoisp
+      - INSP_ADMIN_EMAIL=francoisp@hotmail.com
+      - INSP_OPER_PASSWORD_HASH=de867fe73f241f4d16475b0800ce371ad63b53c0
+      - INSP_OPER_HASH=sha256
+      - INSP_TLS_CN=irc.winclem.com
+      - INSP_TLS_UNIT=Nuclear Unit
+      - INSP_TLS_ORG=Anti-nuclear Organization
+      - INSP_TLS_LOC=Some city
+      - INSP_TLS_STATE=Somewhere
+    expose:
+      - 6667
+      - 6697
+    networks:
+      - irc_network
+
+  client:
+    image: thelounge/thelounge
+    depends_on: 
+      - server
+    volumes:
+      - ./client/thelounge.conf.d:/var/opt/thelounge:rw
+    expose:
+      - 80
+      - 443
+    networks:
+      - irc_network
+
+  reverse_proxy:
+    image: nginx
+    depends_on:
+      - client
+    volumes:
+      - ./reverse_proxy/nginx.conf.d/:/etc/nginx/conf.d/:ro
+    ports:
+      - 80:80
+    networks:
+      - irc_network
+
+networks:
+  irc_network:

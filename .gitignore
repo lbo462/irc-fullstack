@@ -1,0 +1,10 @@
+client/thelounge.conf.d/*
+!client/thelounge.conf.d/packages/
+!client/thelounge.conf.d/config.js
+
+client/thelounge.conf.d/packages/*
+!client/thelounge.conf.d/packages/package.json
+!client/thelounge.conf.d/packages/yarn.lock
+
+server/inspircd.conf.d/*
+!server/inspircd.conf.d/.gitkeep
