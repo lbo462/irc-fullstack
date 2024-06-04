@@ -28,20 +28,8 @@ services:
       - server
     volumes:
       - ./client/thelounge.conf.d:/var/opt/thelounge:rw
-    expose:
-      - 80
-      - 443
-    networks:
-      - irc_network
-
-  reverse_proxy:
-    image: nginx
-    depends_on:
-      - client
-    volumes:
-      - ./reverse_proxy/nginx.conf.d/:/etc/nginx/conf.d/:ro
     ports:
-      - 80:80
+      - 8000:80
     networks:
       - irc_network
 
